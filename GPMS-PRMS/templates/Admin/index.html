@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage User Creation</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Admin/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="{{ url_for('static', filename='Dashboard/logo.png') }}" alt="Syrma SGS Logo" class="logo">
+            <h1>Manage User Creation</h1>
+            <div class="user-info">
+                <span>Welcome,</span>
+                <strong id="username-display">{{ username }}</strong>
+                <a href="{{ url_for('logout') }}" class="logout-icon" title="Logout">
+                  <i class="fa fa-sign-out"></i>
+                </a>
+            </div>
+        </header>
+
+        <nav class="sidebar">
+            <ul>
+              <li>
+                <button class="dropdown-btn">Masters
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('dashboard') }}">Company Master</a>
+                  <a href="{{ url_for('department_master') }}">Department Master</a>
+                  <a href="{{ url_for('suppliers') }}">Suppliers</a>
+                  <a href="{{ url_for('plant_warehouse') }}">Plant Warehouse Master</a>
+                  <a href="{{ url_for('currency_master') }}">Currency Master</a>
+                  <a href="{{ url_for('customer_master') }}">Customer Master</a>
+                  <a href="{{ url_for('numbering_scheme_master') }}">Numbering Scheme Master</a>
+                  <a href="{{ url_for('part_master') }}">Part Master</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Admin
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('user_creation') }}">User Creation</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Transactions
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('create_purchase_request') }}">Create Purchase Request</a>
+                  <a href="{{ url_for('update_purchase_request') }}">Update Purchase Request</a>
+                  <a href="{{ url_for('generate_gate_pass') }}">Generate Gate Pass</a>
+                  <a href="{{ url_for('update_gate_pass') }}">Update Gate Pass</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Security
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('manage_approvals') }}">Manage Approvals</a>
+                  <a href="{{ url_for('user_access') }}">Activity Role Master</a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+        <!-- Main Content for User Creation -->
+        <div class="main-content">
+            <!-- Form Section -->
+            <form id="company-form" class="form">
+                <div class="form-row">
+                    <label for="corporate">Corporate</label>
+                    <input type="text" id="corporate" name="corporate" value="SYRMA SGS TECHNOLOGY LIMITED" disabled>
+                </div>
+                <div class="form-row">
+                    <label for="user-code">User Code *</label>
+                    <input type="text" id="user-code" name="userCode" placeholder="Enter User Code" required>
+                </div>
+                <div class="form-row">
+                    <label for="user-name">User Name *</label>
+                    <input type="text" id="user-name" name="userName" placeholder="Enter User Name" required>
+                </div>
+                <div class="form-row">
+                    <label for="password">Password *</label>
+                    <input type="password" id="password" name="password" placeholder="Enter Password" required>
+                </div>
+                <div class="form-row">
+                    <label for="confirm-password">Confirm Password *</label>
+                    <input type="password" id="confirm-password" name="confirmPassword" placeholder="Confirm Password" required>
+                </div>
+                <div class="form-row">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" placeholder="Enter Email" required>
+                </div>
+                <div class="form-row">
+                    <label for="department">Department Name *</label>
+                    <select id="department" name="department" required>
+                        <option value="">--Select--</option>
+                        <option value="IT">IT</option>
+                        <option value="PURCHASE">PURCHASE</option>
+                        <option value="MAGNETICS STORE">MAGNETICS STORE</option>
+                        <option value="NPI">NPI</option>
+                        <option value="SMT STORE">SMT STORE</option>
+                        <option value="LOGISTICS">LOGISTICS</option>
+                        <option value="SHIPMENT">SHIPMENT</option>
+                        <option value="EXIM">EXIM</option>
+                        <option value="TESTING">TESTING</option>
+                        <option value="ENGINEERING">ENGINEERING</option>
+                        <option value="SCM">SCM</option>
+                        <option value="FACILITY">FACILITY</option>
+                        <option value="ZAC">ZAC</option>
+                        <option value="QUALITY">QUALITY</option>
+                        <option value="CALIBRATION">CALIBRATION</option>
+                        <option value="HR">HR</option>
+                        <option value="PRODUCTION">PRODUCTION</option>
+                        <option value="TEST AND DEVELOPMENT">TEST AND DEVELOPMENT</option>
+                        <option value="PHILIPS">PHILIPS</option>
+                        <option value="MAGNETICS">MAGNETICS</option>
+                        <option value="TOOL ROOM">TOOL ROOM</option>
+                        <option value="BGR PRODUCTION">BGR PRODUCTION</option>
+                        <option value="QA UNIT-1">QA UNIT-1</option>
+                        <option value="QA UNIT-2">QA UNIT-2</option>
+                        <option value="ACCOUNTS">ACCOUNTS</option>
+                        <option value="PDD">PDD</option>
+                        <option value="BAWAL PROCESS">BAWAL PROCESS</option>
+                        <option value="BAWAL PRODUCTION">BAWAL PRODUCTION</option>
+                        <option value="HR SYRMA">HR SYRMA</option>
+                        <option value="INFORMATION TECHNOLOGY">INFORMATION TECHNOLOGY</option>
+                        <option value="MANUFACTURING ENGINEERING">MANUFACTURING ENGINEERING</option>
+                        <option value="INFRMTECH">INFRMTECH</option>
+                        <option value="ITECH">ITECH</option>
+                        <option value="SALES">SALES</option>
+                        <option value="MANUFACTURING ENGINEERING">MANUFACTURING ENGINEERING</option>
+                        <option value="RECEIVING STORE">RECEIVING STORE</option>
+                        <option value="BAWAL RECEIVING">BAWAL RECEIVING</option>
+                        <option value="DIGITAL MARKETING">DIGITAL MARKETING</option>
+                        <option value="PM">PM</option>
+                        <option value="OPS ENGINEERING">OPS ENGINEERING</option>
+                        <option value="BAWAL TESTING">BAWAL TESTING</option>
+                        <option value="BAWAL SMT PRODUCTION">BAWAL SMT PRODUCTION</option>
+                        <option value="BAWAL SMT PROCESS">BAWAL SMT PROCESS</option>
+                        <option value="TEST DEPARTMENT PR">TEST DEPARTMENT PR</option>
+                        <option value="BAWAL OPERATIONS">BAWAL OPERATIONS</option>
+                        <option value="PROGRAM MANAGEMENT">PROGRAM MANAGEMENT</option>
+                        <option value="ESG AUTOMATION">ESG AUTOMATION</option>
+                        <option value="HR BARGUR">HR BARGUR</option>
+                        <option value="PUNE HR">PUNE HR</option>
+                        <option value="QA">QA</option>
+                        <option value="MKTG">MKTG</option>
+                        <option value="BAWAL PM">BAWAL PM</option>
+                        <option value="BAWAL FACILITY">BAWAL FACILITY</option>
+                        <option value="IQC">IQC</option>
+                        <option value="BAWAL STORE">BAWAL STORE</option>
+                        <option value="BAWAL QUALITY">BAWAL QUALITY</option>
+                        <option value="BAWAL INFORMATION TECH">BAWAL INFORMATION TECH</option>
+                        <option value="BAWAL NPI">BAWAL NPI</option>
+                        <option value="BAWAL PURCHASE">BAWAL PURCHASE</option>
+                        <option value="BAWAL HR">BAWAL HR</option>
+                        <option value="BAWAL PLANNING">BAWAL PLANNING</option>                        
+                        <!-- Add more departments as required -->
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="effective-from">Effective From *</label>
+                    <input type="date" id="effective-from" name="effectiveFrom" required>
+                </div>
+                <div class="form-row">
+                    <label for="effective-to">Effective To</label>
+                    <input type="date" id="effective-to" name="effectiveTo">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="reset" class="btn clear">Clear</button>
+                </div>
+            </form>
+
+            <!-- Table Section -->
+            <h2>User Details</h2>
+            <div class="table-container">
+                <table id="company-table" class="company-table">
+                    <thead>
+                        <tr>
+                            <th>User Code</th>
+                            <th>User Name</th>
+                            <th>Email</th>
+                            <th>Department</th>
+                            <th>Effective From</th>
+                            <th>Effective To</th>
+                        </tr>
+                        <tr id="searchRow">
+                            <th><input type="text" placeholder="Search Code" data-column="userCode"></th>
+                            <th><input type="text" placeholder="Search Name" data-column="userName"></th>
+                            <th><input type="text" placeholder="Search Email" data-column="email"></th>
+                            <th><input type="text" placeholder="Search Department" data-column="department"></th>
+                            <th><input type="text" placeholder="Search Effective From" data-column="effectiveFrom"></th>
+                            <th><input type="text" placeholder="Search Effective To" data-column="effectiveTo"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- User rows will be added here dynamically -->
+                    </tbody>
+                </table>
+                <div id="pagination" class="pagination">
+                    <!-- Pagination buttons will be added dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='Admin/scripts.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Currency Exchange Management</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Currency Master/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="{{ url_for('static', filename='Dashboard/logo.png') }}" alt="Syrma SGS Logo" class="logo">
+            <h1>Manage Currency Master</h1>
+            <div class="user-info">
+                <span>Welcome,</span>
+                <strong id="username-display">{{ username }}</strong>
+                <a href="{{ url_for('logout') }}" class="logout-icon" title="Logout">
+                  <i class="fa fa-sign-out"></i>
+                </a>
+            </div>
+        </header>
+
+        <nav class="sidebar">
+            <ul>
+              <li>
+                <button class="dropdown-btn">Masters
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('dashboard') }}">Company Master</a>
+                  <a href="{{ url_for('department_master') }}">Department Master</a>
+                  <a href="{{ url_for('suppliers') }}">Suppliers</a>
+                  <a href="{{ url_for('plant_warehouse') }}">Plant Warehouse Master</a>
+                  <a href="{{ url_for('currency_master') }}">Currency Master</a>
+                  <a href="{{ url_for('customer_master') }}">Customer Master</a>
+                  <a href="{{ url_for('numbering_scheme_master') }}">Numbering Scheme Master</a>
+                  <a href="{{ url_for('part_master') }}">Part Master</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Admin
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('user_creation') }}">User Creation</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Transactions
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('create_purchase_request') }}">Create Purchase Request</a>
+                  <a href="{{ url_for('update_purchase_request') }}">Update Purchase Request</a>
+                  <a href="{{ url_for('generate_gate_pass') }}">Generate Gate Pass</a>
+                  <a href="{{ url_for('update_gate_pass') }}">Update Gate Pass</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Security
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('manage_approvals') }}">Manage Approvals</a>
+                  <a href="{{ url_for('user_access') }}">Activity Role Master</a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Form -->
+            <form id="currency-form" class="form">
+              <div class="form-row">
+                <label for="corporate">Corporate *</label>
+                <input type="text" id="corporate" name="corporate" value="Syrma SGS Technology Limited" disabled>
+            </div>
+                <div class="form-row">
+                    <label for="currency-type">Currency Type *</label>
+                    <select id="currency-type" name="currencyType" required>
+            <option value="">--Select--</option>
+            <option value="INR">INR</option>
+            <option value="USD">USD</option>
+            <option value="JPY">JPY</option>
+            <option value="EUR">EUR</option>
+            <!-- Add more currencies as required -->
+          </select>
+                </div>
+                <div class="form-row">
+                    <label for="exchange-rate">Exchange Rate *</label>
+                    <input type="number" id="exchange-rate" name="exchangeRate" placeholder="Enter Exchange Rate" required>
+                </div>
+                <div class="form-row">
+                    <label for="effective-from">Effective From *</label>
+                    <input type="date" id="effective-from" name="effectiveFrom" required>
+                </div>
+                <div class="form-row">
+                    <label for="effective-to">Effective To</label>
+                    <input type="date" id="effective-to" name="effectiveTo">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="reset" class="btn">Clear</button>
+                </div>
+            </form>
+
+            <!-- Table -->
+            <h2>Currency Exchange Rates List</h2>
+            <div class="table-container">
+                <table id="currency-table" class="company-table">
+                    <thead>
+                        <tr>
+                            <th>Currency Type</th>
+                            <th>Exchange Rate</th>
+                            <th>Effective From</th>
+                            <th>Effective To</th>
+                        </tr>
+                        <tr id="searchRow">
+                            <th><input type="text" placeholder="Search Currency" data-column="currencyType"></th>
+                            <th><input type="text" placeholder="Search Rate" data-column="exchangeRate"></th>
+                            <th><input type="text" placeholder="Search Effective From" data-column="effectiveFrom"></th>
+                            <th><input type="text" placeholder="Search Effective To" data-column="effectiveTo"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Rows will be added dynamically -->
+                    </tbody>
+                </table>
+                <div id="pagination" class="pagination">
+                    <!-- Pagination buttons will be added dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='Currency Master/scripts.js') }}"></script>
+</body>
+
+</html>

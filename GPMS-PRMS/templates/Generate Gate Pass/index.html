@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generate Gate Pass</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Generate Gate Pass/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="{{ url_for('static', filename='Dashboard/logo.png') }}" alt="Syrma SGS Logo" class="logo">
+            <h1>Generate Gate Pass</h1>
+            <div class="user-info">
+                <span>Welcome,</span>
+                <strong id="username-display">{{ username }}</strong>
+                <a href="{{ url_for('logout') }}" class="logout-icon" title="Logout">
+                  <i class="fa fa-sign-out"></i>
+                </a>
+            </div>
+        </header>
+
+        <nav class="sidebar">
+            <ul>
+              <li>
+                <button class="dropdown-btn">Masters
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('dashboard') }}">Company Master</a>
+                  <a href="{{ url_for('department_master') }}">Department Master</a>
+                  <a href="{{ url_for('suppliers') }}">Suppliers</a>
+                  <a href="{{ url_for('plant_warehouse') }}">Plant Warehouse Master</a>
+                  <a href="{{ url_for('currency_master') }}">Currency Master</a>
+                  <a href="{{ url_for('customer_master') }}">Customer Master</a>
+                  <a href="{{ url_for('numbering_scheme_master') }}">Numbering Scheme Master</a>
+                  <a href="{{ url_for('part_master') }}">Part Master</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Admin
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('user_creation') }}">User Creation</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Transactions
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('create_purchase_request') }}">Create Purchase Request</a>
+                  <a href="{{ url_for('update_purchase_request') }}">Update Purchase Request</a>
+                  <a href="{{ url_for('generate_gate_pass') }}">Generate Gate Pass</a>
+                  <a href="{{ url_for('update_gate_pass') }}">Update Gate Pass</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Security
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('manage_approvals') }}">Manage Approvals</a>
+                  <a href="{{ url_for('user_access') }}">Activity Role Master</a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Form Section -->
+            <form id="gate-pass-form" class="form">
+                <div class="form-row">
+                    <label for="corporate">Corporate</label>
+                    <input type="text" id="corporate" name="corporate" value="SYRMA SGS TECHNOLOGY LIMITED" disabled>
+                </div>
+                <div class="form-row">
+                    <label for="customer-code">Customer Code *</label>
+                    <select id="customer-code" name="customerCode" required>
+                      <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="customer-name">Customer Name *</label>
+                    <select id="customer-name" name="customerName" required>
+                      <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="gate-pass-date">Gate Pass Date *</label>
+                    <input type="date" id="gate-pass-date" name="gatePassDate" required>
+                </div>
+                <div class="form-row">
+                    <label for="gate-pass-type">Gate Pass Type *</label>
+                    <select id="gate-pass-type" name="gatePassType" required>
+            <option value="">--Select--</option>
+            <option value="Returnable">Returnable</option>
+            <option value="Non-Returnable">Non-Returnable</option>
+          </select>
+                </div>
+                <div class="form-row">
+                    <label for="plant">Plant *</label>
+                    <select id="plant" name="plant" required>
+                      <option value="">--Select--</option>
+                      <option value="Plant 1">Plant 1</option>
+                      <option value="Plant 2">Plant 2</option>
+                      <option value="Plot No. B-27">Plot No. B-27</option>
+                      <option value="Syrma Technologies Pvt. Ltd.">Syrma Technologies Pvt. Ltd.</option>
+                      <option value="Bawal">Bawal</option>
+                      <option value="Plant 3">Plant 3</option>
+                      <option value="Bangalore Plant">Bangalore Plant</option>
+                      <option value="Plant 8">Plant 8</option>
+                      <option value="Pune Plant">Pune Plant</option>
+                      <option value="Bargur Plant">Bargur Plant</option>
+                  </select>
+                </div>
+                <h2>Part Details</h2>
+                <div class="form-row">
+                    <label for="no-of-packs">No. of Packs *</label>
+                    <input type="number" id="no-of-packs" name="noOfPacks" placeholder="Enter No. of Packs" required>
+                </div>
+                <div class="form-row">
+                    <label for="uom">UOM</label>
+                    <select id="uom" name="uom">
+            <option value="">--Select--</option>
+            <option value="Milligrams">Milligrams</option>
+            <option value="Grams">Grams</option>
+            <option value="Kilograms">Kilograms</option>
+            <option value="Bottles">Bottles</option>
+            <option value="Boxes">Boxes</option>
+            <option value="Bundles">Bundles</option>
+            <option value="Centimeter">Centimeter</option>
+            <option value="Litres">Litres</option>
+            <option value="Meters">Meters</option>
+            <option value="Numbers">Numbers</option>
+            <option value="Rolls">Rolls</option>
+            <option value="Sets">Sets</option>
+            <option value="SQ.FT">SQ.FT</option>
+            <option value="SQ.METER">SQ.METER</option>
+            <option value="CU.METER">CU.METER</option>
+            <option value="RU.METER">RU.METER</option>
+          </select>
+                </div>
+                <div class="form-row">
+                    <label for="description">Description *</label>
+                    <input type="text" id="description" name="description" placeholder="Enter Description" required>
+                </div>
+                <div class="form-row">
+                    <label for="quantity">Quantity *</label>
+                    <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" required>
+                </div>
+                <div class="form-row">
+                    <label for="purpose">Purpose *</label>
+                    <input type="text" id="purpose" name="purpose" placeholder="Enter Purpose" required>
+                </div>
+                <div class="form-row">
+                    <label for="vehicle-no">Vehicle No.</label>
+                    <input type="text" id="vehicle-no" name="vehicleNo" placeholder="Enter Vehicle No.">
+                </div>
+
+                <div class="form-actions">
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="reset" class="btn clear">Clear</button>
+                </div>
+            </form>
+
+            <h2>Gate Pass Part Details</h2>
+            <div class="table-container">
+                <table id="gate-pass-table" class="company-table">
+                    <thead>
+                        <tr>
+                            <th>No. of Packs</th>
+                            <th>UOM</th>
+                            <th>Description</th>
+                            <th>Quantity</th>
+                            <th>Purpose</th>
+                            <th>Vehicle No.</th>
+                            <th>Action</th> <!-- New Action Column -->
+                        </tr>
+                        <tr id="searchRow">
+                            <th><input type="text" placeholder="Search No. of Packs" data-column="noOfPacks"></th>
+                            <th><input type="text" placeholder="Search UOM" data-column="uom"></th>
+                            <th><input type="text" placeholder="Search Description" data-column="description"></th>
+                            <th><input type="text" placeholder="Search Quantity" data-column="quantity"></th>
+                            <th><input type="text" placeholder="Search Purpose" data-column="purpose"></th>
+                            <th><input type="text" placeholder="Search Vehicle No." data-column="vehicleNo"></th>
+                            <th></th> <!-- Empty cell for the delete column -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Gate pass rows will be added here dynamically -->
+                    </tbody>
+                </table>
+                <div id="pagination" class="pagination">
+                    <!-- Pagination buttons will be added dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='Generate Gate Pass/scripts.js') }}"></script>
+</body>
+
+</html>

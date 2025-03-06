@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Customer Master</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Customer Master/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="{{ url_for('static', filename='Dashboard/logo.png') }}" alt="Syrma SGS Logo" class="logo">
+            <h1>Manage Customer Master</h1>
+            <div class="user-info">
+                <span>Welcome,</span>
+                <strong id="username-display">{{ username }}</strong>
+                <a href="{{ url_for('logout') }}" class="logout-icon" title="Logout">
+                    <i class="fa fa-sign-out"></i>
+                  </a>
+            </div>
+        </header>
+
+        <nav class="sidebar">
+            <ul>
+              <li>
+                <button class="dropdown-btn">Masters
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('dashboard') }}">Company Master</a>
+                  <a href="{{ url_for('department_master') }}">Department Master</a>
+                  <a href="{{ url_for('suppliers') }}">Suppliers</a>
+                  <a href="{{ url_for('plant_warehouse') }}">Plant Warehouse Master</a>
+                  <a href="{{ url_for('currency_master') }}">Currency Master</a>
+                  <a href="{{ url_for('customer_master') }}">Customer Master</a>
+                  <a href="{{ url_for('numbering_scheme_master') }}">Numbering Scheme Master</a>
+                  <a href="{{ url_for('part_master') }}">Part Master</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Admin
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('user_creation') }}">User Creation</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Transactions
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('create_purchase_request') }}">Create Purchase Request</a>
+                  <a href="{{ url_for('update_purchase_request') }}">Update Purchase Request</a>
+                  <a href="{{ url_for('generate_gate_pass') }}">Generate Gate Pass</a>
+                  <a href="{{ url_for('update_gate_pass') }}">Update Gate Pass</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Security
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('manage_approvals') }}">Manage Approvals</a>
+                  <a href="{{ url_for('user_access') }}">Activity Role Master</a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Form Section -->
+            <form id="customer-form" class="form">
+                <!-- Basic Customer Details -->
+                <div class="form-row">
+                    <label for="corporate">Corporate *</label>
+                    <input type="text" id="corporate" name="corporate" value="Syrma SGS Technology Limited" disabled>
+                </div>
+                <div class="form-row">
+                    <label for="customer-code">Customer Code *</label>
+                    <input type="text" id="customer-code" name="customerCode" placeholder="Enter Customer Code" required>
+                </div>
+                <div class="form-row">
+                    <label for="customer-name">Customer Name *</label>
+                    <input type="text" id="customer-name" name="customerName" placeholder="Enter Customer Name" required>
+                </div>
+                <div class="form-row">
+                    <label for="company-code">Company Code *</label>
+                    <input type="text" id="company-code" name="companyCode" placeholder="Enter Company Code" required>
+                </div>
+                <div class="form-row">
+                    <label for="fax-no">Fax No *</label>
+                    <input type="text" id="fax-no" name="faxNo" placeholder="Enter Fax No" required>
+                </div>
+
+                <!-- Address Details -->
+                <h3>Address Details</h3>
+                <div class="form-row">
+                    <label for="customer-plant-name">Customer Plant Name *</label>
+                    <input type="text" id="customer-plant-name" name="customerPlantName" placeholder="Enter Customer Plant Name" required>
+                </div>
+                <div class="form-row">
+                    <label for="gst-no">GST No *</label>
+                    <input type="text" id="gst-no" name="gstNo" placeholder="Enter GST No" required>
+                </div>
+                <div class="form-row">
+                    <label for="address">Address *</label>
+                    <textarea id="address" name="address" placeholder="Enter Address" required></textarea>
+                </div>
+                <div class="form-row">
+                    <label for="country">Country *</label>
+                    <input type="text" id="country" name="country" placeholder="Enter Country" required>
+                </div>
+                <div class="form-row">
+                    <label for="state">State *</label>
+                    <select id="state" name="state" required>
+              <option value="">--Select State--</option>
+              <option value="Andhra Pradesh">Andhra Pradesh</option>
+              <option value="Arunachal Pradesh">Arunachal Pradesh</option>
+              <option value="Assam">Assam</option>
+              <option value="Bihar">Bihar</option>
+              <option value="Chhattisgarh">Chhattisgarh</option>
+              <option value="Goa">Goa</option>
+              <option value="Gujarat">Gujarat</option>
+              <option value="Haryana">Haryana</option>
+              <option value="Himachal Pradesh">Himachal Pradesh</option>
+              <option value="Jharkhand">Jharkhand</option>
+              <option value="Karnataka">Karnataka</option>
+              <option value="Kerala">Kerala</option>
+              <option value="Madhya Pradesh">Madhya Pradesh</option>
+              <option value="Maharashtra">Maharashtra</option>
+              <option value="Manipur">Manipur</option>
+              <option value="Meghalaya">Meghalaya</option>
+              <option value="Mizoram">Mizoram</option>
+              <option value="Nagaland">Nagaland</option>
+              <option value="Odisha">Odisha</option>
+              <option value="Punjab">Punjab</option>
+              <option value="Rajasthan">Rajasthan</option>
+              <option value="Sikkim">Sikkim</option>
+              <option value="Tamil Nadu">Tamil Nadu</option>
+              <option value="Telangana">Telangana</option>
+              <option value="Tripura">Tripura</option>
+              <option value="Uttar Pradesh">Uttar Pradesh</option>
+              <option value="Uttarakhand">Uttarakhand</option>
+              <option value="West Bengal">West Bengal</option>
+              <option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+              <option value="Chandigarh">Chandigarh</option>
+              <option value="Dadra and Nagar Haveli and Daman and Diu">Dadra and Nagar Haveli and Daman and Diu</option>
+              <option value="Delhi">Delhi</option>
+              <option value="Jammu and Kashmir">Jammu and Kashmir</option>
+              <option value="Ladakh">Ladakh</option>
+              <option value="Lakshadweep">Lakshadweep</option>
+              <option value="Puducherry">Puducherry</option>
+            </select>
+                </div>
+                <div class="form-row">
+                    <label for="state-code">State Code *</label>
+                    <input type="text" id="state-code" name="stateCode" placeholder="Enter State Code" required>
+                </div>
+                <div class="form-row">
+                    <label for="pin-code">Pin Code *</label>
+                    <input type="text" id="pin-code" name="pinCode" placeholder="Enter Pin Code" required>
+                </div>
+                <div class="form-row">
+                    <label for="contact-person">Contact Person *</label>
+                    <input type="text" id="contact-person" name="contactPerson" placeholder="Enter Contact Person" required>
+                </div>
+                <div class="form-row">
+                    <label for="phone-no">Phone No *</label>
+                    <input type="tel" id="phone-no" name="phoneNo" placeholder="Enter Phone No" required>
+                </div>
+                <div class="form-row">
+                    <label for="mobile-no">Mobile No *</label>
+                    <input type="tel" id="mobile-no" name="mobileNo" placeholder="Enter Mobile No" required>
+                </div>
+                <div class="form-row">
+                    <label for="email-id">Email ID *</label>
+                    <input type="email" id="email-id" name="emailId" placeholder="Enter Email ID" required>
+                </div>
+
+                <!-- Default Checkboxes -->
+                <div class="form-row">
+                    <label for="is-default-billing">
+              <input type="checkbox" id="is-default-billing" name="isDefaultBilling">
+              Is Default for Billing
+            </label>
+                    <label for="is-default-shipping">
+              <input type="checkbox" id="is-default-shipping" name="isDefaultShipping">
+              Is Default for Shipping
+            </label>
+                </div>
+
+                <!-- Actions -->
+                <div class="form-actions">
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="reset" class="btn clear">Clear</button>
+                </div>
+            </form>
+
+            <!-- Table Section -->
+            <h2>Customer Details</h2>
+            <div class="table-container">
+                <table id="customer-table" class="company-table">
+                    <thead>
+                        <tr>
+                            <th>Customer Code</th>
+                            <th>Customer Name</th>
+                            <th>Company Code</th>
+                            <th>Fax No</th>
+                            <th>Customer Plant Name</th>
+                            <th>GST No</th>
+                            <th>Address</th>
+                            <th>Country</th>
+                            <th>State</th>
+                            <th>State Code</th>
+                            <th>Pin Code</th>
+                            <th>Contact Person</th>
+                            <th>Phone No</th>
+                            <th>Mobile No</th>
+                            <th>Email ID</th>
+                            <th>Is Default for Billing</th>
+                            <th>Is Default for Shipping</th>
+                        </tr>
+                        <tr id="searchRow">
+                            <th><input type="text" placeholder="Search Code" data-column="customerCode"></th>
+                            <th><input type="text" placeholder="Search Name" data-column="customerName"></th>
+                            <th><input type="text" placeholder="Search Company Code" data-column="companyCode"></th>
+                            <th><input type="text" placeholder="Search Fax No" data-column="faxNo"></th>
+                            <th><input type="text" placeholder="Search Plant Name" data-column="customerPlantName"></th>
+                            <th><input type="text" placeholder="Search GST" data-column="gstNo"></th>
+                            <th><input type="text" placeholder="Search Address" data-column="address"></th>
+                            <th><input type="text" placeholder="Search Country" data-column="country"></th>
+                            <th><input type="text" placeholder="Search State" data-column="state"></th>
+                            <th><input type="text" placeholder="Search State Code" data-column="stateCode"></th>
+                            <th><input type="text" placeholder="Search Pin Code" data-column="pinCode"></th>
+                            <th><input type="text" placeholder="Search Contact Person" data-column="contactPerson"></th>
+                            <th><input type="text" placeholder="Search Phone No" data-column="phoneNo"></th>
+                            <th><input type="text" placeholder="Search Mobile No" data-column="mobileNo"></th>
+                            <th><input type="text" placeholder="Search Email" data-column="emailId"></th>
+                            <th><input type="text" placeholder="Search Billing Default" data-column="isDefaultBilling"></th>
+                            <th><input type="text" placeholder="Search Shipping Default" data-column="isDefaultShipping"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table data will be inserted dynamically -->
+                    </tbody>
+                </table>
+                <div id="pagination" class="pagination">
+                    <!-- Pagination buttons will be added dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='Customer Master/scripts.js') }}"></script>
+</body>
+
+</html>

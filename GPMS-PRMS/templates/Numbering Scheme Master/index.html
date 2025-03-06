@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Numbering Scheme Master</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Numbering scheme Master/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="{{ url_for('static', filename='Dashboard/logo.png') }}" alt="Syrma SGS Logo" class="logo">
+            <h1>Numbering Scheme Master</h1>
+            <div class="user-info">
+                <span>Welcome,</span>
+                <strong id="username-display">{{ username }}</strong>
+                <a href="{{ url_for('logout') }}" class="logout-icon" title="Logout">
+                  <i class="fa fa-sign-out"></i>
+                </a>
+            </div>
+        </header>
+
+        <nav class="sidebar">
+            <ul>
+              <li>
+                <button class="dropdown-btn">Masters
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('dashboard') }}">Company Master</a>
+                  <a href="{{ url_for('department_master') }}">Department Master</a>
+                  <a href="{{ url_for('suppliers') }}">Suppliers</a>
+                  <a href="{{ url_for('plant_warehouse') }}">Plant Warehouse Master</a>
+                  <a href="{{ url_for('currency_master') }}">Currency Master</a>
+                  <a href="{{ url_for('customer_master') }}">Customer Master</a>
+                  <a href="{{ url_for('numbering_scheme_master') }}">Numbering Scheme Master</a>
+                  <a href="{{ url_for('part_master') }}">Part Master</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Admin
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('user_creation') }}">User Creation</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Transactions
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('create_purchase_request') }}">Create Purchase Request</a>
+                  <a href="{{ url_for('update_purchase_request') }}">Update Purchase Request</a>
+                  <a href="{{ url_for('generate_gate_pass') }}">Generate Gate Pass</a>
+                  <a href="{{ url_for('update_gate_pass') }}">Update Gate Pass</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Security
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('manage_approvals') }}">Manage Approvals</a>
+                  <a href="{{ url_for('user_access') }}">Activity Role Master</a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Form Section -->
+            <form id="numbering-scheme-form" class="form">
+              <div class="form-row">
+                <label for="corporate">Corporate *</label>
+                <input type="text" id="corporate" name="corporate" value="Syrma SGS Technology Limited" disabled>
+            </div>
+            <div class="form-row">
+              <label for="document-type">Document Type *</label>
+              <select id="document-type" name="documentType" required>
+              <option value="">--Select--</option>
+              <option value="Purchase Request">Purchase Request</option>
+              <option value="Delivery Challan">Delivery Challan</option>
+              </select>
+            </div>
+                <div class="form-row">
+                    <label for="from-plant-warehouse">From Plant/Warehouse *</label>
+                    <input type="text" id="from-plant-warehouse" name="fromPlantWarehouse" placeholder="Enter From Plant/Warehouse" required>
+                </div>
+                <div class="form-row">
+                    <label for="prefix">Prefix *</label>
+                    <input type="text" id="prefix" name="prefix" placeholder="Enter Prefix" required>
+                </div>
+                <div class="form-row">
+                    <label for="pattern">Pattern *</label>
+                    <input type="text" id="pattern" name="pattern" placeholder="Enter Pattern" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="reset" class="btn clear">Clear</button>
+                </div>
+            </form>
+
+            <!-- Table Section -->
+            <h2>Numbering Scheme Details</h2>
+            <div class="table-container">
+                <table id="numbering-scheme-table" class="company-table">
+                    <thead>
+                        <tr>
+                            <th>Document Type</th>
+                            <th>From Plant/Warehouse</th>
+                            <th>Prefix</th>
+                            <th>Pattern</th>
+                        </tr>
+                        <tr id="searchRow">
+                            <th><input type="text" placeholder="Search Document Type"></th>
+                            <th><input type="text" placeholder="Search From Plant/Warehouse"></th>
+                            <th><input type="text" placeholder="Search Prefix"></th>
+                            <th><input type="text" placeholder="Search Pattern"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Table rows will be dynamically added here -->
+                    </tbody>
+                </table>
+                <div id="pagination" class="pagination">
+                    <!-- Pagination buttons will be dynamically added -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='Numbering Scheme Master/scripts.js') }}"></script>
+</body>
+
+</html>
