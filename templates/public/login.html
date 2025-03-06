@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Syrma SGS Login</title>
+    <!-- Link to the CSS file inside the public folder under static -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='public/styles.css') }}">
+
+</head>
+<body>
+    <div class="login-container">
+        <div class="logo">
+            <!-- Use url_for to ensure Flask serves the image correctly -->
+            <img src="{{ url_for('static', filename='public/syrma_logo.png') }}" alt="Syrma SGS Logo">
+        </div>
+        <h1>GPMS/PRMS</h1>
+        <form id="loginForm" method="POST" action="/login">
+            <!-- Add name attributes so form fields can be processed in Flask -->
+            <input type="text" id="username" name="username" placeholder="Username" required>
+            <input type="password" id="password" name="password" placeholder="Password" required>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
+    <!-- Link to the JS file inside the public folder under static -->
+    <script src="{{ url_for('static', filename='public/script.js') }}"></script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Arial, sans-serif;
+}
+ 
+body {
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-image: url('https://images.unsplash.com/photo-1518770660439-4636190af475?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MXwyMDg2NXwwfDF8c2VhcmNofDE1fHxpdCUyMHRlY2hub2xvZ3l8fDB8fHw&ixlib=rb-1.2.1&q=80&w=1920');
+    background-size: cover;
+    background-position: center;
+    color: #333;
+}
+ 
+.login-container {
+    background-color: rgba(20, 227, 144, 0.3);
+    padding: 40px;
+}
+ 
+.login-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    padding: 40px;
+    border-radius: 12px;
+    max-width: 400px;
+    width: 90%;
+    text-align: center;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.3);
+    backdrop-filter: blur(8px);
+    transition: transform 0.3s;
+}
+ 
+.login-container:hover {
+    transform: scale(1.05);
+}
+ 
+.logo img {
+    width: 150px;
+    margin-bottom: 20px;
+}
+ 
+h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #007BFF;
+    font-weight: 600;
+}
+ 
+ 
+input[type="text"],
+input[type="password"] {
+    width: 100%;
+    padding: 14px;
+    margin: 10px 0;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 16px;
+    outline: none;
+    transition: border-color 0.3s;
+}
+ 
+input[type="text"]:focus,
+input[type="password"]:focus {
+    border-color: #007BFF;
+    box-shadow: 0 0 8px rgba(0, 123, 255, 0.2);
+}
+ 
+button {
+    width: 100%;
+    padding: 14px;
+    background-color: #007BFF;
+    color: #fff;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s, box-shadow 0.3s;
+}
+ 
+button:hover {
+    background-color: #0056b3;
+    box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+}
+ 
+.footer {
+    margin-top: 20px;
+    font-size: 14px;
+    color: #666;
+}
+ 
+.footer a {
+    color: #007BFF;
+    text-decoration: none;
+}
+ 
+.footer a:hover {
+    text-decoration: underline;
+}

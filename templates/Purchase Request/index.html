@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Purchase Request</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Purchase Request/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="{{ url_for('static', filename='Dashboard/logo.png') }}" alt="Syrma SGS Logo" class="logo">
+            <h1>Create Purchase Request</h1>
+            <div class="user-info">
+                <span>Welcome,</span>
+                <strong id="username-display">{{ username }}</strong>
+                <a href="{{ url_for('logout') }}" class="logout-icon" title="Logout">
+                    <i class="fa fa-sign-out"></i>
+                  </a>
+            </div>
+        </header>
+
+        <nav class="sidebar">
+            <ul>
+              <li>
+                <button class="dropdown-btn">Masters
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('dashboard') }}">Company Master</a>
+                  <a href="{{ url_for('department_master') }}">Department Master</a>
+                  <a href="{{ url_for('suppliers') }}">Suppliers</a>
+                  <a href="{{ url_for('plant_warehouse') }}">Plant Warehouse Master</a>
+                  <a href="{{ url_for('currency_master') }}">Currency Master</a>
+                  <a href="{{ url_for('customer_master') }}">Customer Master</a>
+                  <a href="{{ url_for('numbering_scheme_master') }}">Numbering Scheme Master</a>
+                  <a href="{{ url_for('part_master') }}">Part Master</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Admin
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('user_creation') }}">User Creation</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Transactions
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('create_purchase_request') }}">Create Purchase Request</a>
+                  <a href="{{ url_for('update_purchase_request') }}">Update Purchase Request</a>
+                  <a href="{{ url_for('generate_gate_pass') }}">Generate Gate Pass</a>
+                  <a href="{{ url_for('update_gate_pass') }}">Update Gate Pass</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Security
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('manage_approvals') }}">Manage Approvals</a>
+                  <a href="{{ url_for('user_access') }}">Activity Role Master</a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Form Section -->
+            <form id="purchase-request-form" class="form">
+                <div class="form-row">
+                    <label for="corporate">Corporate</label>
+                    <input type="text" id="corporate" name="corporate" placeholder="Enter Corporate">
+                </div>
+                <div class="form-row">
+                    <label for="plant">Plant *</label>
+                    <select id="plant" name="plant" required>
+                        <option value="">--Select--</option>
+                        <option value="Plant 1">Plant 1</option>
+                        <option value="Plant 2">Plant 2</option>
+                        <option value="Plot No. B-27">Plot No. B-27</option>
+                        <option value="Syrma Technologies Pvt. Ltd.">Syrma Technologies Pvt. Ltd.</option>
+                        <option value="Bawal">Bawal</option>
+                        <option value="Plant 3">Plant 3</option>
+                        <option value="Bangalore Plant">Bangalore Plant</option>
+                        <option value="Plant 8">Plant 8</option>
+                        <option value="Pune Plant">Pune Plant</option>
+                        <option value="Bargur Plant">Bargur Plant</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="pr-no">PR No</label>
+                    <input type="text" id="pr-no" name="prNo" readonly>
+                </div>
+                <div class="form-row">
+                    <label for="supplier-code">Supplier Code *</label>
+                    <select id="supplier-code" name="supplierCode" required>
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="supplier-name">Supplier Name *</label>
+                    <select id="supplier-name" name="supplierName" required>
+                        <option value="">--Select--</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="pr-date">PR Date *</label>
+                    <input type="date" id="pr-date" name="prDate" required>
+                </div>
+                <div class="form-row">
+                    <label for="department">Department *</label>
+                    <select id="department" name="department" required>
+                        <option value="">--Select--</option>
+                        <option value="IT">IT</option>
+                        <option value="PURCHASE">PURCHASE</option>
+                        <option value="MAGNETICS STORE">MAGNETICS STORE</option>
+                        <option value="NPI">NPI</option>
+                        <option value="SMT STORE">SMT STORE</option>
+                        <option value="LOGISTICS">LOGISTICS</option>
+                        <option value="SHIPMENT">SHIPMENT</option>
+                        <option value="EXIM">EXIM</option>
+                        <option value="TESTING">TESTING</option>
+                        <option value="ENGINEERING">ENGINEERING</option>
+                        <option value="SCM">SCM</option>
+                        <option value="FACILITY">FACILITY</option>
+                        <option value="ZAC">ZAC</option>
+                        <option value="QUALITY">QUALITY</option>
+                        <option value="CALIBRATION">CALIBRATION</option>
+                        <option value="HR">HR</option>
+                        <option value="PRODUCTION">PRODUCTION</option>
+                        <option value="TEST AND DEVELOPMENT">TEST AND DEVELOPMENT</option>
+                        <option value="PHILIPS">PHILIPS</option>
+                        <option value="MAGNETICS">MAGNETICS</option>
+                        <option value="TOOL ROOM">TOOL ROOM</option>
+                        <option value="BGR PRODUCTION">BGR PRODUCTION</option>
+                        <option value="QA UNIT-1">QA UNIT-1</option>
+                        <option value="QA UNIT-2">QA UNIT-2</option>
+                        <option value="ACCOUNTS">ACCOUNTS</option>
+                        <option value="PDD">PDD</option>
+                        <option value="BAWAL PROCESS">BAWAL PROCESS</option>
+                        <option value="BAWAL PRODUCTION">BAWAL PRODUCTION</option>
+                        <option value="HR SYRMA">HR SYRMA</option>
+                        <option value="INFORMATION TECHNOLOGY">INFORMATION TECHNOLOGY</option>
+                        <option value="MANUFACTURING ENGINEERING">MANUFACTURING ENGINEERING</option>
+                        <option value="INFRMTECH">INFRMTECH</option>
+                        <option value="ITECH">ITECH</option>
+                        <option value="SALES">SALES</option>
+                        <option value="MANUFACTURING ENGINEERING">MANUFACTURING ENGINEERING</option>
+                        <option value="RECEIVING STORE">RECEIVING STORE</option>
+                        <option value="BAWAL RECEIVING">BAWAL RECEIVING</option>
+                        <option value="DIGITAL MARKETING">DIGITAL MARKETING</option>
+                        <option value="PM">PM</option>
+                        <option value="OPS ENGINEERING">OPS ENGINEERING</option>
+                        <option value="BAWAL TESTING">BAWAL TESTING</option>
+                        <option value="BAWAL SMT PRODUCTION">BAWAL SMT PRODUCTION</option>
+                        <option value="BAWAL SMT PROCESS">BAWAL SMT PROCESS</option>
+                        <option value="TEST DEPARTMENT PR">TEST DEPARTMENT PR</option>
+                        <option value="BAWAL OPERATIONS">BAWAL OPERATIONS</option>
+                        <option value="PROGRAM MANAGEMENT">PROGRAM MANAGEMENT</option>
+                        <option value="ESG AUTOMATION">ESG AUTOMATION</option>
+                        <option value="HR BARGUR">HR BARGUR</option>
+                        <option value="PUNE HR">PUNE HR</option>
+                        <option value="QA">QA</option>
+                        <option value="MKTG">MKTG</option>
+                        <option value="BAWAL PM">BAWAL PM</option>
+                        <option value="BAWAL FACILITY">BAWAL FACILITY</option>
+                        <option value="IQC">IQC</option>
+                        <option value="BAWAL STORE">BAWAL STORE</option>
+                        <option value="BAWAL QUALITY">BAWAL QUALITY</option>
+                        <option value="BAWAL INFORMATION TECH">BAWAL INFORMATION TECH</option>
+                        <option value="BAWAL NPI">BAWAL NPI</option>
+                        <option value="BAWAL PURCHASE">BAWAL PURCHASE</option>
+                        <option value="BAWAL HR">BAWAL HR</option>
+                        <option value="BAWAL PLANNING">BAWAL PLANNING</option>                        
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="requested-by">Requested By</label>
+                    <input type="text" id="requested-by" name="requestedBy" readonly>
+                </div>
+                <div class="form-row">
+                    <label for="category">Category *</label>
+                    <select id="category" name="category" required>
+            <option value="">--Select--</option>
+            <option value="CAPEX">CAPEX</option>
+            <option value="NORMAL">NORMAL</option>
+            <option value="STATIONARY">STATIONARY</option>
+          </select>
+                </div>
+
+                <h2>Request Details</h2>
+                <div class="form-row">
+                    <label for="part-name">Part Name *</label>
+                    <input type="text" id="part-name" name="partName" placeholder="Enter Part Name" required>
+                </div>
+                <div class="form-row">
+                    <label for="part-number">Part Number *</label>
+                    <input type="text" id="part-number" name="partNumber" placeholder="Enter Part Number" required>
+                </div>
+                <div class="form-row">
+                    <label for="quantity">Quantity *</label>
+                    <input type="number" id="quantity" name="quantity" placeholder="Enter Quantity" required>
+                </div>
+                <div class="form-row">
+                    <label for="new-part">
+          <input type="checkbox" id="new-part" name="newPart">
+          New Part
+        </label>
+                </div>
+                <div class="form-row">
+                    <label for="currency">Currency Type *</label>
+                    <select id="currency" name="currencyType" required>
+            <option value="">--Select--</option>
+            <option value="USD">USD</option>
+            <option value="JPY">JPY</option>
+            <option value="INR">INR</option>
+            <option value="EUR">EUR</option>
+          </select>
+                </div>
+                <div class="form-row">
+                    <label for="unit-price">Unit Price *</label>
+                    <input type="number" id="unit-price" name="unitPrice" placeholder="Enter Unit Price" required>
+                </div>
+                <div class="form-row">
+                    <label for="uom">UOM *</label>
+                    <select id="uom" name="uom" required>
+            <option value="">--Select--</option>
+            <option value="Milligrams">Milligrams</option>
+            <option value="Grams">Grams</option>
+            <option value="Kilograms">Kilograms</option>
+            <option value="Bottles">Bottles</option>
+            <option value="Boxes">Boxes</option>
+            <option value="Bundles">Bundles</option>
+            <option value="Centimeter">Centimeter</option>
+            <option value="Litres">KLitres</option>
+            <option value="Meters">Meters</option>
+            <option value="Numbers">Numbers</option>
+            <option value="Rolls">Rolls</option>
+            <option value="Sets">Sets</option>
+            <option value="SQ.FT">SQ.FT</option>
+            <option value="SQ.METER">SQ.METER</option>
+            <option value="CU.METER">CU.METER</option>
+            <option value="RU.METER">RU.METER</option>
+          </select>
+                </div>
+                <div class="form-row">
+                    <label for="required-date">Required Date *</label>
+                    <input type="date" id="required-date" name="requiredDate" required>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="reset" class="btn clear">Clear</button>
+                </div>
+            </form>
+
+            <!-- Table Section -->
+            <h2>Purchase Request Details</h2>
+            <div class="table-container">
+                <table id="purchase-table" class="company-table">
+                    <thead>
+                        <tr>
+                            <th>Part Number</th>
+                            <th>Part Name</th>
+                            <th>UOM</th>
+                            <th>Quantity</th>
+                            <th>Currency Type</th>
+                            <th>Unit Price</th>
+                            <th>Required Date</th>
+                            <th>Action</th> <!-- New Action Column -->
+                        </tr>
+                        <tr id="searchRow">
+                            <th><input type="text" placeholder="Search Part Number" data-column="partNumber"></th>
+                            <th><input type="text" placeholder="Search Part Name" data-column="partName"></th>
+                            <th><input type="text" placeholder="Search UOM" data-column="uom"></th>
+                            <th><input type="text" placeholder="Search Quantity" data-column="quantity"></th>
+                            <th><input type="text" placeholder="Search Currency" data-column="currencyType"></th>
+                            <th><input type="text" placeholder="Search Unit Price" data-column="unitPrice"></th>
+                            <th><input type="text" placeholder="Search Required Date" data-column="requiredDate"></th>
+                            <th></th> <!-- Empty cell for the delete column -->
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Purchase Request rows will be added here dynamically -->
+                    </tbody>
+                </table>
+                <div id="pagination" class="pagination">
+                    <!-- Pagination buttons will be added dynamically -->
+                </div>
+            </div>
+            <!-- New Mail Details Section -->
+            <h2>Mail Details</h2>
+            <div class="mail-details-container">
+                <form id="mail-details-form" class="mail-details-form">
+                    <div class="form-row">
+                        <label for="attachment">Attachment File *</label>
+                        <div class="file-input-container">
+                            <input type="file" id="attachment" name="attachment" required>
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <label for="pr-reason">Reason of PR *</label>
+                        <textarea id="pr-reason" name="prReason" rows="4" required placeholder="Enter reason for Purchase Request"></textarea>
+                    </div>
+                    <div class="form-actions">
+                        <button type="submit" class="btn">Submit Mail Details</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <script src="{{ url_for('static', filename='Purchase Request/scripts.js') }}"></script>
+</body>
+
+</html>

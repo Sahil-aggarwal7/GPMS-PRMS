@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Part Master</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='Part Master/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="{{ url_for('static', filename='Dashboard/logo.png') }}" alt="Syrma SGS Logo" class="logo">
+            <h1>Manage Part Master</h1>
+            <div class="user-info">
+                <span>Welcome,</span>
+                <strong id="username-display">{{ username }}</strong>
+                <a href="{{ url_for('logout') }}" class="logout-icon" title="Logout">
+                    <i class="fa fa-sign-out"></i>
+                  </a>
+            </div>
+        </header>
+        <nav class="sidebar">
+            <ul>
+              <li>
+                <button class="dropdown-btn">Masters
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('dashboard') }}">Company Master</a>
+                  <a href="{{ url_for('department_master') }}">Department Master</a>
+                  <a href="{{ url_for('suppliers') }}">Suppliers</a>
+                  <a href="{{ url_for('plant_warehouse') }}">Plant Warehouse Master</a>
+                  <a href="{{ url_for('currency_master') }}">Currency Master</a>
+                  <a href="{{ url_for('customer_master') }}">Customer Master</a>
+                  <a href="{{ url_for('numbering_scheme_master') }}">Numbering Scheme Master</a>
+                  <a href="{{ url_for('part_master') }}">Part Master</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Admin
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('user_creation') }}">User Creation</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Transactions
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('create_purchase_request') }}">Create Purchase Request</a>
+                  <a href="{{ url_for('update_purchase_request') }}">Update Purchase Request</a>
+                  <a href="{{ url_for('generate_gate_pass') }}">Generate Gate Pass</a>
+                  <a href="{{ url_for('update_gate_pass') }}">Update Gate Pass</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Security
+                    <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('manage_approvals') }}">Manage Approvals</a>
+                  <a href="{{ url_for('user_access') }}">Activity Role Master</a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Form Section -->
+            <form id="part-master-form" class="form">
+                <div class="form-row">
+                    <label for="corporate">Corporate *</label>
+                    <input type="text" id="corporate" name="corporate" value="Syrma SGS Technology Limited" disabled>
+                </div>
+                <div class="form-row">
+                    <label for="part-code">Part Code *</label>
+                    <input type="text" id="part-code" name="partCode" placeholder="Enter Part Code" required>
+                </div>
+                <div class="form-row">
+                    <label for="part-name">Part Name *</label>
+                    <input type="text" id="part-name" name="partName" placeholder="Enter Part Name" required>
+                </div>
+                <div class="form-row">
+                    <label for="basic-cost">Basic Cost</label>
+                    <input type="number" id="basic-cost" name="basicCost" placeholder="Enter Basic Cost" >
+                </div>
+                <div class="form-row">
+                    <label for="packing-cost">Packing Cost</label>
+                    <input type="number" id="packing-cost" name="packingCost" placeholder="Enter Packing Cost">
+                </div>
+                <div class="form-row">
+                    <label for="freight-cost">Freight Cost</label>
+                    <input type="number" id="freight-cost" name="freightCost" placeholder="Enter Freight Cost">
+                </div>
+                <div class="form-row">
+                    <label for="amortisation-cost">Amortisation Cost</label>
+                    <input type="number" id="amortisation-cost" name="amortisationCost" placeholder="Enter Amortisation Cost" >
+                </div>
+                <div class="form-row">
+                    <label for="uom">UOM</label>
+                    <input type="text" id="uom" name="uom" placeholder="Enter UOM">
+                </div>
+                <div class="form-row">
+                    <label for="hsn-code">HSN Code *</label>
+                    <input type="text" id="hsn-code" name="hsnCode" placeholder="Enter HSN Code" required>
+                </div>
+                <div class="form-row">
+                    <label for="std-weight">STD Weight</label>
+                    <input type="number" id="std-weight" name="stdWeight" placeholder="Enter STD Weight">
+                </div>
+                <div class="form-row">
+                    <label for="container">Container</label>
+                    <input type="text" id="container" name="container" placeholder="Enter Container">
+                </div>
+                <div class="form-row">
+                    <label for="stuff-quantity">Stuff Quantity *</label>
+                    <input type="number" id="stuff-quantity" name="stuffQuantity" placeholder="Enter Stuff Quantity" required>
+                </div>
+                <div class="form-row">
+                    <label for="model">Model *</label>
+                    <select id="model" name="model" required>
+                        <option value="">--Select--</option>
+                        <option value="AH2">AH2</option>
+                        <option value="QXi">QXi</option>
+                        <option value="HCl">HCl</option>
+                        <option value="SP2i">SP2i</option>
+                        <option value="Bl3">Bl3</option>
+                        <option value="QY">QY</option>
+                        <option value="BR2">BR2</option>
+                        <option value="TEST">TEST</option>
+                        <option value="SGNAME">SGNAME</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="division">Division *</label>
+                    <select id="division" name="division" required>
+                        <option value="">--Select--</option>
+                        <option value="DM">DM</option>
+                        <option value="AP">AP</option>
+                        <option value="DIVISION-EAST">DIVISION-EAST</option>
+                        <option value="ORAGADAM">ORAGADAM</option>
+                    </select>
+                </div>
+                <div class="form-row">
+                    <label for="effective-from">Effective From *</label>
+                    <input type="date" id="effective-from" name="effectiveFrom" required>
+                </div>
+                <div class="form-row">
+                    <label for="effective-to">Effective To</label>
+                    <input type="date" id="effective-to" name="effectiveTo">
+                </div>
+                <div class="form-row">
+                    <label for="material-type">Material Type</label>
+                    <select id="material-type" name="materialType">
+                        <option value="">--Select--</option>
+                        <option value="FG">FG</option>
+                        <option value="RAW">RAW</option>
+                    </select>
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="reset" class="btn clear">Clear</button>
+                </div>
+            </form>
+
+            <!-- Table Section -->
+            <h2>Part Master Details</h2>
+            <div class="table-container">
+                <table id="part-master-table" class="company-table">
+                    <thead>
+                        <tr>
+                            <th>Part Code</th>
+                            <th>Part Name</th>
+                            <th>Basic Cost</th>
+                            <th>Packing Cost</th>
+                            <th>Freight Cost</th>
+                            <th>Amortisation Cost</th>
+                            <th>UOM</th>
+                            <th>HSN Code</th>
+                            <th>STD Weight</th>
+                            <th>Container</th>
+                            <th>Stuff Quantity</th>
+                            <th>Model</th>
+                            <th>Division</th>
+                            <th>Effective From</th>
+                            <th>Effective To</th>
+                            <th>Material Type</th>
+                        </tr>
+                        <tr id="searchRow">
+                            <th><input type="text" placeholder="Search Code" data-column="partCode"></th>
+                            <th><input type="text" placeholder="Search Name" data-column="partName"></th>
+                            <th><input type="text" placeholder="Search Cost" data-column="basicCost"></th>
+                            <th><input type="text" placeholder="Search Packing Cost" data-column="packingCost"></th>
+                            <th><input type="text" placeholder="Search Freight Cost" data-column="freightCost"></th>
+                            <th><input type="text" placeholder="Search Amortisation Cost" data-column="amortisationCost"></th>
+                            <th><input type="text" placeholder="Search UOM" data-column="uom"></th>
+                            <th><input type="text" placeholder="Search HSN Code" data-column="hsnCode"></th>
+                            <th><input type="text" placeholder="Search STD Weight" data-column="stdWeight"></th>
+                            <th><input type="text" placeholder="Search Container" data-column="container"></th>
+                            <th><input type="text" placeholder="Search Stuff Quantity" data-column="stuffQuantity"></th>
+                            <th><input type="text" placeholder="Search Model" data-column="model"></th>
+                            <th><input type="text" placeholder="Search Division" data-column="division"></th>
+                            <th><input type="text" placeholder="Search Effective From" data-column="effectiveFrom"></th>
+                            <th><input type="text" placeholder="Search Effective To" data-column="effectiveTo"></th>
+                            <th><input type="text" placeholder="Search Material Type" data-column="materialType"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Part Master rows will be added here dynamically -->
+                    </tbody>
+                </table>
+                <div id="pagination" class="pagination">
+                    <!-- Pagination buttons will be added dynamically -->
+                </div>
+            </div>
+            <script src="{{ url_for('static', filename='Part Master/scripts.js') }}"></script>
+</body>
+
+</html>

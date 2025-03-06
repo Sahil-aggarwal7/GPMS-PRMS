@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>User Access Rights</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='User Access Rights/styles.css') }}">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+<body>
+  <div class="container">
+    <!-- Header -->
+    <header class="header">
+      <img src="{{ url_for('static', filename='Dashboard/logo.png') }}" alt="Syrma SGS Logo" class="logo">
+      <h1>User Access Rights</h1>
+      <div class="user-info">
+        <span>Welcome,</span>
+        <strong id="username-display">{{ username }}</strong>
+        <a href="{{ url_for('logout') }}" class="logout-icon" title="Logout">
+          <i class="fa fa-sign-out"></i>
+        </a>
+      </div>
+    </header>
+
+    <!-- Sidebar Navigation -->
+    <nav class="sidebar">
+      <ul>
+        <li>
+          <button class="dropdown-btn">Masters
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+            <a href="{{ url_for('dashboard') }}">Company Master</a>
+            <a href="{{ url_for('department_master') }}">Department Master</a>
+            <a href="{{ url_for('suppliers') }}">Suppliers</a>
+            <a href="{{ url_for('plant_warehouse') }}">Plant Warehouse Master</a>
+            <a href="{{ url_for('currency_master') }}">Currency Master</a>
+            <a href="{{ url_for('customer_master') }}">Customer Master</a>
+            <a href="{{ url_for('numbering_scheme_master') }}">Numbering Scheme Master</a>
+            <a href="{{ url_for('part_master') }}">Part Master</a>
+          </div>
+        </li>
+        <li>
+          <button class="dropdown-btn">Admin
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+            <a href="{{ url_for('user_creation') }}">User Creation</a>
+          </div>
+        </li>
+        <li>
+          <button class="dropdown-btn">Transactions
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+            <a href="{{ url_for('create_purchase_request') }}">Create Purchase Request</a>
+            <a href="{{ url_for('update_purchase_request') }}">Update Purchase Request</a>
+            <a href="{{ url_for('generate_gate_pass') }}">Generate Gate Pass</a>
+            <a href="{{ url_for('update_gate_pass') }}">Update Gate Pass</a>
+          </div>
+        </li>
+        <li>
+          <button class="dropdown-btn">Security
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+            <a href="{{ url_for('manage_approvals') }}">Manage Approvals</a>
+            <a href="{{ url_for('user_access') }}">Activity Role Master</a>
+          </div>
+        </li>
+      </ul>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="main-content">
+      <form id="user-access-form" class="form">
+        <!-- User Selection -->
+        <div class="form-row">
+          <label for="user">User</label>
+          <select id="user" name="user" required>
+            <option value="">--Select--</option>
+            <!-- Dynamically populated in scripts.js -->
+          </select>
+        </div>
+
+        <!-- Permission Checkboxes (Collapsible) -->
+        <div class="permission-section">
+          <!-- Admin -->
+          <button type="button" class="dropdown-btn">Admin
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+            <label>
+              <input type="checkbox" name="module_permissions" value="Admin_UserCreation" />
+              User Creation
+            </label>
+          </div>
+        </div>
+
+        <div class="permission-section">
+          <!-- Masters -->
+          <button type="button" class="dropdown-btn">Masters
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+            <label>
+              <input type="checkbox" name="module_permissions" value="Masters_CompanyMaster" />
+              Company Master
+            </label>
+            <label>
+              <input type="checkbox" name="module_permissions" value="Masters_DepartmentMaster" />
+              Department Master
+            </label>
+            <label>
+              <input type="checkbox" name="module_permissions" value="Masters_Suppliers" />
+              Suppliers
+            </label>
+            <label>
+              <input type="checkbox" name="module_permissions" value="Masters_PlantWarehouseMaster" />
+              Plant Warehouse Master
+            </label>
+            <label>
+              <input type="checkbox" name="module_permissions" value="Masters_CurrencyMaster" />
+              Currency Master
+            </label>
+            <label>
+              <input type="checkbox" name="module_permissions" value="Masters_CustomerMaster" />
+              Customer Master
+            </label>
+            <label>
+              <input type="checkbox" name="module_permissions" value="Masters_NumberingSchemeMaster" />
+              Numbering Scheme Master
+            </label>
+            <label>
+              <input type="checkbox" name="module_permissions" value="Masters_PartMaster" />
+              Part Master
+            </label>
+          </div>
+        </div>
+
+        <div class="permission-section">
+          <!-- Transaction -->
+          <button type="button" class="dropdown-btn">Transaction
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+            <label>
+              <input type="checkbox" name="module_permissions" value="Transaction_CreatePurchaseRequest" />
+              Create Purchase Request
+            </label>
+            <label>
+              <input type="checkbox" name="module_permissions" value="Transaction_UpdatePurchaseRequest" />
+              Update Purchase Request
+            </label>
+            <label>
+              <input type="checkbox" name="module_permissions" value="Transaction_PRDetailReport" />
+              PR Detail Report
+            </label>
+          </div>
+        </div>
+
+        <div class="permission-section">
+          <!-- Security -->
+          <button type="button" class="dropdown-btn">Security
+            <i class="fa fa-caret-down"></i>
+          </button>
+          <div class="dropdown-container">
+            <label>
+              <input type="checkbox" name="module_permissions" value="Security_ManageApprovals" />
+              Manage Approvals
+            </label>
+            <label>
+              <input type="checkbox" name="module_permissions" value="Security_ActivityRoleMaster" />
+              Activity Role Master
+            </label>
+          </div>
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" class="btn">Submit</button>
+          <button type="reset" class="btn clear">Clear</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <!-- Your existing scripts.js file -->
+  <script src="{{ url_for('static', filename='User Access Rights/scripts.js') }}"></script>
+</body>
+</html>

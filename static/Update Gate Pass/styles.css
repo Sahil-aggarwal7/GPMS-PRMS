@@ -1,0 +1,404 @@
+/* General Styling for Body */
+body {
+    font-family: 'Roboto', Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.delete-cell {
+    text-align: center;
+    cursor: pointer;
+  }
+  
+  .delete-icon {
+    color: red;
+    font-size: 1.2em;
+  }
+.user-info {
+    display: flex;
+    align-items: center;
+  }
+  
+  /* Logout Icon Styling */
+  .logout-icon {
+    margin-left: 15px;
+    color: #fff;
+    font-size: 18px;  /* Adjust size as needed */
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+  
+  .logout-icon:hover {
+    color: #cce6ff;  /* Lighter shade on hover */
+  }
+.container {
+    display: grid;
+    grid-template-columns: 250px 1fr;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+}
+
+.header {
+    grid-column: 1 / 3;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #0052cc;
+    color: #fff;
+    padding: 5px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    height: 50px;
+}
+
+/* Sidebar Styling */
+.sidebar {
+    background-color: #172b4d;
+    color: #fff;
+    padding: 20px;
+    box-shadow: 2px 0 5px rgba(0, 0, 0, 0.1);
+    position: relative;
+}
+
+.sidebar ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sidebar ul li {
+    margin-bottom: 10px;
+    position: relative;
+}
+
+/* Sidebar Links */
+.sidebar ul li a {
+    color: #d9e1f2;
+    text-decoration: none;
+    font-size: 15px;
+    display: block;
+    padding: 8px 10px;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+}
+
+/* Active/hover effect for links */
+.sidebar ul li a:hover,
+.sidebar ul li a.active {
+    background-color: #0052cc;
+    color: #fff;
+}
+
+/* Dropdown Button Styling */
+.dropdown-btn {
+    background-color: #172b4d;
+    color: #d9e1f2;
+    text-decoration: none;
+    font-size: 15px;
+    padding: 8px 10px;
+    border: none;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+    border-radius: 4px;
+    transition: background 0.3s ease;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid #0052cc; /* Border below dropdown sections */
+}
+
+/* Hover and active states for dropdown button */
+.dropdown-btn:hover,
+.dropdown-btn.active {
+    background-color: #0052cc;
+    color: white;
+}
+
+/* Arrow icon for dropdown */
+.dropdown-btn::after {
+    /* content: " ▼";  Downward arrow */
+    font-size: 12px;
+    margin-left: 10px;
+    transition: transform 0.3s ease;
+}
+
+/* Rotate the arrow when dropdown is open */
+.sidebar ul li.open > .dropdown-btn::after {
+    transform: rotate(180deg);  /* Flip arrow */
+}
+
+/* Dropdown Menu */
+.dropdown-container {
+    display: none;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    border-radius: 4px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+    background-color: #172b4d;
+    width: 100%;  /* Ensure dropdown is full width */
+    position: relative;
+    z-index: 1000;  /* Ensure dropdown is on top */
+}
+
+.dropdown-container li {
+    border-bottom: 1px solid #333;
+}
+
+.dropdown-container li:last-child {
+    border-bottom: none;
+}
+
+.dropdown-container a {
+    display: block;
+    padding: 10px;
+    color: #d9e1f2;
+    text-decoration: none;
+    background-color: transparent;
+}
+
+/* Highlight link on hover inside dropdown */
+.dropdown-container a:hover {
+    background-color: #0052cc;
+}
+
+/* Show dropdown on hover */
+.sidebar ul li.open .dropdown-container {
+    display: block;
+}
+
+/* Active class for dropdown links */
+.dropdown-container a.active {
+    background-color: #0052cc;
+    color: #fff;
+}
+
+/* Adjust spacing between dropdown sections */
+.sidebar ul li.master > .dropdown-btn,
+.sidebar ul li.admin > .dropdown-btn,
+.sidebar ul li.transaction > .dropdown-btn,
+.sidebar ul li.security > .dropdown-btn {
+    margin-top: 20px;
+}
+
+/* Clear margin between dropdowns */
+.sidebar ul li.open + li {
+    margin-top: 10px;
+}
+
+/* Section specific styles */
+.sidebar ul li.master {
+    margin-top: 10px;
+}
+
+.sidebar ul li.admin {
+    margin-top: 20px;
+}
+
+.sidebar ul li.transaction {
+    margin-top: 30px;
+}
+
+.sidebar ul li.security {
+    margin-top: 40px;
+}
+
+/* Remove the active class from all dropdowns to prevent multiple highlights */
+.sidebar ul li {
+    position: relative;
+    margin-bottom: 10px;
+}
+
+/* Adjust the dropdown menu button so only one is active */
+.sidebar ul li.open > .dropdown-btn {
+    background-color: #0052cc;
+    color: white;
+}
+
+/* Make sure the background of non-active items doesn't have the blue color */
+.sidebar ul li > .dropdown-btn {
+    background-color: transparent;
+    color: #d9e1f2;
+}
+
+/* Remove the active state for dropdown links */
+.sidebar ul li.open .dropdown-container a.active {
+    background-color: #0052cc;
+    color: white;
+}
+
+/* Ensure dropdown container doesn't overlap others */
+.sidebar ul li.open .dropdown-container {
+    display: block;
+}
+
+/* Hide other dropdowns when a new one is opened */
+.sidebar ul li.open ~ li.open .dropdown-container {
+    display: none;
+}
+
+/* Styling for Form */
+.main-content {
+    padding: 20px;
+    background-color: #fff;
+    overflow-y: auto;
+}
+
+.form {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.form-row {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+input, textarea, select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+textarea {
+    resize: vertical;
+    height: 80px;
+}
+
+/* Form Actions */
+.form-actions {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+    grid-column: 3 / 4;  /* Make sure the actions are in the last column */
+    text-align: right;
+}
+
+.btn {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn.clear {
+    background-color: #0052cc;
+    color: #fff;
+}
+
+.btn {
+    background-color: #0052cc;
+    color: #fff;
+}
+
+/* Table Styles */
+.table-container {
+    margin-top: 30px;
+}
+
+.company-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+}
+
+.company-table thead {
+    background-color: #0052cc;
+    color: white;
+}
+
+.company-table th, .company-table td {
+    padding: 10px;
+    text-align: left;
+    border: 1px solid #ddd;
+}
+
+.company-table th {
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.company-table tbody tr:nth-child(even) {
+    background-color: #f2f2f2;
+}
+
+.company-table tbody tr:hover {
+    background-color: #eaf4fc;
+}
+
+.company-table tbody td {
+    color: #333;
+}
+
+.company-table button {
+    padding: 5px 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 14px;
+}
+
+.company-table .edit-btn {
+    background-color: #4caf50;
+    color: white;
+}
+
+.company-table .delete-btn {
+    background-color: #f44336;
+    color: white;
+}
+
+.company-table .edit-btn:hover {
+    background-color: #45a049;
+}
+
+.company-table .delete-btn:hover {
+    background-color: #e53935;
+}
+
+/* Pagination Styles */
+.pagination {
+  margin-top: 10px;
+  text-align: center;
+}
+
+.pagination button {
+  padding: 5px 10px;
+  margin: 0 2px;
+  border: 1px solid #ccc;
+  background-color: #f9f9f9;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.pagination button.active {
+  background-color: #007bff;
+  color: #fff;
+  border-color: #007bff;
+}
+
+.pagination button:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+
+/* Select Styling */
+select {
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 100%;  /* Ensure it has the same width as input fields */
+    box-sizing: border-box;
+}

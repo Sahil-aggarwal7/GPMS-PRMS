@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Manage Department Master</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='manage_dept_master/styles.css') }}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <img src="{{ url_for('static', filename='Dashboard/logo.png') }}" alt="Syrma SGS Logo" class="logo">
+            <h1>Manage Department Master</h1>
+            <div class="user-info">
+                <span>Welcome,</span>
+                <strong id="username-display">{{ username }}</strong>
+                <a href="{{ url_for('logout') }}" class="logout-icon" title="Logout">
+                  <i class="fa fa-sign-out"></i>
+                </a>
+            </div>
+        </header>
+        <nav class="sidebar">
+            <ul>
+              <li>
+                <button class="dropdown-btn">Masters
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('dashboard') }}">Company Master</a>
+                  <a href="{{ url_for('department_master') }}">Department Master</a>
+                  <a href="{{ url_for('suppliers') }}">Suppliers</a>
+                  <a href="{{ url_for('plant_warehouse') }}">Plant Warehouse Master</a>
+                  <a href="{{ url_for('currency_master') }}">Currency Master</a>
+                  <a href="{{ url_for('customer_master') }}">Customer Master</a>
+                  <a href="{{ url_for('numbering_scheme_master') }}">Numbering Scheme Master</a>
+                  <a href="{{ url_for('part_master') }}">Part Master</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Admin
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('user_creation') }}">User Creation</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Transactions
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('create_purchase_request') }}">Create Purchase Request</a>
+                  <a href="{{ url_for('update_purchase_request') }}">Update Purchase Request</a>
+                  <a href="{{ url_for('generate_gate_pass') }}">Generate Gate Pass</a>
+                  <a href="{{ url_for('update_gate_pass') }}">Update Gate Pass</a>
+                </div>
+              </li>
+              <li>
+                <button class="dropdown-btn">Security
+                  <i class="fa fa-caret-down"></i>
+                </button>
+                <div class="dropdown-container">
+                  <a href="{{ url_for('manage_approvals') }}">Manage Approvals</a>
+                  <a href="{{ url_for('user_access') }}">Activity Role Master</a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <!-- Form Section -->
+            <form id="department-master-form" class="form">
+              <div class="form-row">
+                <label for="corporate">Corporate *</label>
+                <input type="text" id="corporate" name="corporate" value="Syrma SGS Technology Limited" disabled>
+              </div>
+                <div class="form-row">
+                    <label for="department-code">Department Code *</label>
+                    <input type="text" id="department-code" name="departmentCode" placeholder="Enter Department Code" required>
+                </div>
+                <div class="form-row">
+                    <label for="department-name">Department Name *</label>
+                    <input type="text" id="department-name" name="departmentName" placeholder="Enter Department Name" required>
+                </div>
+                <div class="form-row">
+                  <label for="effective-from">Effective From *</label>
+                  <input type="date" id="effective-from" name="effectiveFrom" required>
+              </div>
+              <div class="form-row">
+                  <label for="effective-to">Effective To</label>
+                  <input type="date" id="effective-to" name="effectiveTo">
+              </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn">Submit</button>
+                    <button type="reset" class="btn clear">Clear</button>
+                </div>
+            </form>
+
+            <!-- Table Section -->
+            <h2>Department Master Details</h2>
+            <div class="table-container">
+                <table id="department-master-table" class="company-table">
+                    <thead>
+                        <tr>
+                            <th>Department Code</th>
+                            <th>Department Name</th>
+                            <th>Effective From</th>
+                            <th>Effective To</th>
+                        </tr>
+                        <tr id="searchRow">
+                            <th><input type="text" placeholder="Search Code" data-column="departmentCode"></th>
+                            <th><input type="text" placeholder="Search Name" data-column="departmentName"></th>
+                            <th><input type="text" placeholder="Search Effective From" data-column="effectiveFrom"></th>
+                            <th><input type="text" placeholder="Search Effective To" data-column="effectiveTo"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <!-- Department rows will be added here dynamically -->
+                    </tbody>
+                </table>
+                <div id="pagination" class="pagination">
+                    <!-- Pagination buttons will be added dynamically -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="{{ url_for('static', filename='manage_dept_master/scripts.js') }}"></script>
+</body>
+
+</html>
